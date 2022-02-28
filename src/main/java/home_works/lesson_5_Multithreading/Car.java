@@ -4,6 +4,7 @@ import java.util.concurrent.CyclicBarrier;
 
 public class Car implements Runnable {
     private static int CARS_COUNT;
+    private static boolean hasWinner = false;
 
     static {
         CARS_COUNT = 0;
@@ -42,6 +43,10 @@ public class Car implements Runnable {
         }
         for (int i = 0; i < race.getStages().size(); i++) {
             race.getStages().get(i).go(this);
+        }
+        if (!hasWinner) {
+            System.out.println("Победитель гонки: " + this.name);
+            hasWinner = true;
         }
         try {
             stageController.await();
