@@ -5,6 +5,7 @@ import java.util.concurrent.CyclicBarrier;
 public class Car implements Runnable {
     private static int CARS_COUNT;
     private static boolean hasWinner = false;
+    private static final Object mon = new Object();
 
     static {
         CARS_COUNT = 0;
@@ -45,8 +46,10 @@ public class Car implements Runnable {
             race.getStages().get(i).go(this);
         }
         if (!hasWinner) {
-            System.out.println("Победитель гонки: " + this.name);
-            hasWinner = true;
+            synchronized (mon) {
+                System.out.println("Победитель гонки: " + this.name);
+                hasWinner = true;
+            }
         }
         try {
             stageController.await();
