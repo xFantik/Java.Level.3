@@ -1,4 +1,4 @@
-package home_works.lesson_6;
+package home_works.lesson_6_Log_Test;
 
 import java.util.Arrays;
 

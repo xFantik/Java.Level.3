@@ -1,4 +1,4 @@
-package home_works.lesson_6;
+package home_works.lesson_6_Log_Test;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
