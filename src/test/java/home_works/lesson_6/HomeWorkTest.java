@@ -40,7 +40,7 @@ class HomeWorkTest {
 
     @MethodSource("generateData")
     @ParameterizedTest
-    void massCheckArrayTest(boolean result, int... arr) {
+    void massCheckArrayTest(boolean result, int[] arr) {
         if (result)
             Assertions.assertTrue(HomeWork.checkArray(arr));
         else
@@ -57,6 +57,22 @@ class HomeWorkTest {
         args.add(Arguments.arguments(false, new int[]{1, 1, 1, 1, 1, 4, 1, 4, 2, 1}));
         args.add(Arguments.arguments(false, new int[]{4, 4, 4}));
         args.add(Arguments.arguments(false, new int[]{1, 2, 3, 4}));
+
+        return args.stream();
+    }
+
+    @MethodSource("generateData1")
+    @ParameterizedTest
+    void massSubArrayTest(int[] array, int[] result) {
+        Assertions.assertArrayEquals(result, HomeWork.getAfterLastFourSubArray(array));
+    }
+
+    private static Stream<Arguments> generateData1() {
+        List<Arguments> args = new LinkedList<>();
+
+        args.add(Arguments.arguments(new int[]{1, 4, 1}, new int[]{1}));
+        args.add(Arguments.arguments(new int[]{12, 3, 4, 1, 4, 1, 2}, new int[]{1, 2}));
+        args.add(Arguments.arguments(new int[]{12, 3, 4, 1, 4, 1, 2,4}, new int[]{}));
 
         return args.stream();
     }
